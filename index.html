@@ -326,6 +326,34 @@ body{
   }
 }
 
+  /* ===== Party Ribbons (NEW – Independent) ===== */
+.party-ribbons-layer{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.party-ribbon{
+  position: absolute;
+  width: 6px;
+  height: 42px;
+  border-radius: 3px;
+  animation: partyPop 1.6s ease-out forwards;
+}
+
+@keyframes partyPop{
+  from{
+    transform: translate(0,0) rotate(0deg);
+    opacity: 1;
+  }
+  to{
+    transform: translate(var(--x), var(--y)) rotate(360deg);
+    opacity: 0;
+  }
+}
+
 
 </style>
 </head>
@@ -334,6 +362,7 @@ body{
 
 <div class="balloons" id="balloonsRow" aria-hidden="true"></div>
 <div class="banner">❤️ HAPPY BIRTHDAY Beba ❤️</div>
+  <div class="party-ribbons-layer"></div>
 <div class="card">
   <div class="hearts-layer"></div>
   <div class="confetti-layer"></div>
@@ -425,10 +454,56 @@ document.addEventListener("DOMContentLoaded", function(){
       h.textContent = "00";
       m.textContent = "00";
       s.textContent = "00";
+
+      if(!partyStarted){
+  partyStarted = true;
+  launchPartyRibbons();
+  setInterval(launchPartyRibbons, 2000);
+}
+
     }
   }
 
 });
+  
+  let partyStarted = false;
+
+function launchPartyRibbons(){
+  const layer = document.querySelector(".party-ribbons-layer");
+  if(!layer) return;
+
+  const card = document.querySelector(".card");
+  const rect = card.getBoundingClientRect();
+
+  const corners = [
+    { x: rect.left,  y: rect.top,    dx: -180, dy: -180 }, // فوق شمال
+    { x: rect.right, y: rect.top,    dx:  180, dy: -180 }, // فوق يمين
+    { x: rect.left,  y: rect.bottom, dx: -180, dy:  180 }, // تحت شمال
+    { x: rect.right, y: rect.bottom, dx:  180, dy:  180 }  // تحت يمين
+  ];
+
+  const colors = [
+    "linear-gradient(#ff4d6d,#ffd166)",
+    "linear-gradient(#4cc9f0,#cdb4db)",
+    "linear-gradient(#ffd93b,#ff922b)"
+  ];
+
+  corners.forEach(corner=>{
+    for(let i=0;i<10;i++){
+      const r = document.createElement("div");
+      r.className = "party-ribbon";
+      r.style.background = colors[Math.floor(Math.random()*colors.length)];
+      r.style.left = corner.x + "px";
+      r.style.top  = corner.y + "px";
+      r.style.setProperty("--x", corner.dx + (Math.random()*60-30) + "px");
+      r.style.setProperty("--y", corner.dy + (Math.random()*60-30) + "px");
+
+      layer.appendChild(r);
+      setTimeout(()=>r.remove(),1600);
+    }
+  });
+}
+
 
 /* ========== Messages ========== */
 const lines=[...document.querySelectorAll(".lineMsg")];
@@ -568,6 +643,7 @@ function clearEffects(){
 </body>
 
 </html>
+
 
 
 
