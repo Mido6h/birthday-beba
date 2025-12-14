@@ -332,6 +332,7 @@ body{
   inset:0;
   pointer-events:none;
   z-index:5; /* تحت النص */
+  display: none;
 }
 
 
@@ -340,6 +341,7 @@ body{
   width: clamp(90px, 14vw, 140px);
   height: clamp(90px, 14vw, 140px);
   transform-origin: center center;
+  transform: scaleX(-1) rotate(90deg);
 }
 
 
@@ -453,7 +455,7 @@ let confettiStarted = false;
 document.addEventListener("DOMContentLoaded", function(){
 
   // 🎯 التاريخ (غيره براحتك)
-  const target = new Date("2025-12-15T00:59:00");
+  const target = new Date("2025-12-15T01:7:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -643,6 +645,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
