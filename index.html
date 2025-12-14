@@ -341,8 +341,8 @@ body{
   width: clamp(90px, 14vw, 140px);
   height: clamp(90px, 14vw, 140px);
   transform-origin: center center;
-  transform: scaleX(-1) rotate(90deg);
 }
+
 
 
 /* **ضبط الزوايا وتوجيه الوجه للمنتصف:** نستخدم قيم سالبة لسحب الإيموجي إلى ما وراء الحافة، و الـ (overflow: hidden) هيتولى مهمة قص الأجزاء الزائدة.
@@ -351,28 +351,25 @@ body{
 .popper.tl{
   top: 0;
   left: 0;
-  transform: rotate(0deg);
+  transform: scaleX(-1) rotate(0deg);
 }
-
 
 .popper.tr{
   top: 0;
   right: 0;
-  transform: rotate(90deg);
+  transform: scaleX(-1) rotate(90deg);
 }
-
 
 .popper.br{
   bottom: 0;
   right: 0;
-  transform: rotate(180deg);
+  transform: scaleX(-1) rotate(180deg);
 }
-
 
 .popper.bl{
   bottom: 0;
   left: 0;
-  transform: rotate(270deg);
+  transform: scaleX(-1) rotate(270deg);
 }
 
 .popper svg{
@@ -427,7 +424,7 @@ body{
 /* ===== المتغيرات (لازم فوق) ===== */
 let effectsStarted = false;
 let confettiStarted = false;
-
+let partyShown = false;
 
 /* ===== باقي الكود ===== */
 
@@ -455,7 +452,7 @@ let confettiStarted = false;
 document.addEventListener("DOMContentLoaded", function(){
 
   // 🎯 التاريخ (غيره براحتك)
-  const target = new Date("2025-12-15T01:7:00");
+  const target = new Date("2025-12-15T01:13:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -480,16 +477,19 @@ document.addEventListener("DOMContentLoaded", function(){
       m.textContent = String(Math.floor(diff / 60000) % 60).padStart(2,"0");
       s.textContent = String(Math.floor(diff / 1000) % 60).padStart(2,"0");
     } else {
-      clearInterval(timer);
+  if (partyShown) return;   // 🔒 يمنع أي تنفيذ بدري
+  partyShown = true;
 
-      d.textContent = "00";
-      h.textContent = "00";
-      m.textContent = "00";
-      s.textContent = "00";
+  clearInterval(timer);
 
-        document.querySelector(".party-layer").style.display = "block";
+  d.textContent = "00";
+  h.textContent = "00";
+  m.textContent = "00";
+  s.textContent = "00";
 
-    }
+  document.querySelector(".party-layer").style.display = "block";
+}
+
   }
 
 });
@@ -645,43 +645,6 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
