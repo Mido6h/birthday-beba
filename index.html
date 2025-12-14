@@ -389,18 +389,11 @@ let confettiStarted = false;
 
 
 /* ========== Countdown ========== */
-/* ========== Countdown (FIX NAMES ISSUE) ========== */
-/* ========== Countdown (CORRECT YEAR LOGIC) ========== */
+/* ========== Countdown (FINAL – NO ZERO BUG) ========== */
 (function(){
-  const now = new Date();
 
-  // نحاول نحسب 23/2 من السنة الحالية
-  let target = new Date(now.getFullYear(), 1, 23, 0, 0, 0);
-
-  // لو التاريخ عدّى → خليه السنة اللي بعدها (2026)
-  if(now >= target){
-    target = new Date(now.getFullYear() + 1, 1, 23, 0, 0, 0);
-  }
+  // 🎯 التاريخ الثابت: 23 فبراير 2026 – الساعة 12 صباحًا
+  const target = new Date("2026-02-23T00:00:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -417,26 +410,25 @@ let confettiStarted = false;
 
   function tick(){
     const now = new Date();
-    let diff = target - now;
+    let diff = target.getTime() - now.getTime();
 
-    if(diff <= 0){
+    // لو لسه قبل التاريخ
+    if(diff > 0){
+      d.textContent = String(Math.floor(diff / 86400000)).padStart(2,"0");
+      h.textContent = String(Math.floor(diff / 3600000) % 24).padStart(2,"0");
+      m.textContent = String(Math.floor(diff / 60000) % 60).padStart(2,"0");
+      s.textContent = String(Math.floor(diff / 1000) % 60).padStart(2,"0");
+    } 
+    // لو وصلنا للتاريخ
+    else {
       clearInterval(timer);
-      setZero();
-      return;
+      d.textContent = "00";
+      h.textContent = "00";
+      m.textContent = "00";
+      s.textContent = "00";
     }
-
-    d.textContent = String(Math.floor(diff / 86400000)).padStart(2,"0");
-    h.textContent = String(Math.floor(diff / 3600000) % 24).padStart(2,"0");
-    m.textContent = String(Math.floor(diff / 60000) % 60).padStart(2,"0");
-    s.textContent = String(Math.floor(diff / 1000) % 60).padStart(2,"0");
   }
 
-  function setZero(){
-    d.textContent = "00";
-    h.textContent = "00";
-    m.textContent = "00";
-    s.textContent = "00";
-  }
 })();
 
 
@@ -578,6 +570,7 @@ function clearEffects(){
 </body>
 
 </html>
+
 
 
 
