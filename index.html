@@ -326,39 +326,42 @@ body{
   }
 }
 
- /* ===== Lottie Emoji (Auto Responsive) ===== */
-.emoji-lottie-layer{
+  /* ===== Party Emoji 🎉 ===== */
+.party-emoji-layer{
   position:absolute;
   inset:0;
   pointer-events:none;
-  z-index:4;
+  z-index:2;
 }
 
-.emoji-lottie-layer .corner{
+/* حجم يتظبط تلقائي لأي شاشة */
+.party-emoji{
   position:absolute;
-  width:clamp(90px,18vw,160px); /* 👈 التحكم الوحيد في الحجم */
-  aspect-ratio:1;
+  width:clamp(42px, 8vw, 70px);
+  height:clamp(42px, 8vw, 70px);
 }
 
-.corner.tl{ top:0; left:0; }
-.corner.tr{ top:0; right:0; }
-.corner.bl{ bottom:0; left:0; }
-.corner.br{ bottom:0; right:0; }
+/* الزوايا */
+.party-emoji.tl{ top:12px; left:12px; }
+.party-emoji.tr{ top:12px; right:12px; }
+.party-emoji.bl{ bottom:12px; left:12px; }
+.party-emoji.br{ bottom:12px; right:12px; }
+
 
 </style>
+  <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
 </head>
-
 <body>
 
 <div class="balloons" id="balloonsRow" aria-hidden="true"></div>
 <div class="banner">❤️ HAPPY BIRTHDAY Beba ❤️</div>
 <div class="card">
-   <div class="emoji-lottie-layer">
-    <div class="corner tl"></div>
-    <div class="corner tr"></div>
-    <div class="corner bl"></div>
-    <div class="corner br"></div>
-  </div>
+  <div class="party-emoji-layer">
+  <div class="party-emoji tl"></div>
+  <div class="party-emoji tr"></div>
+  <div class="party-emoji bl"></div>
+  <div class="party-emoji br"></div>
+</div>
   <div class="hearts-layer"></div>
   <div class="confetti-layer"></div>
   <h1 class="title">عيد ميلاد سعيد لأجمل بنت عرفتها🫶<span id="name"></span></h1>
@@ -418,7 +421,7 @@ let confettiStarted = false;
 document.addEventListener("DOMContentLoaded", function(){
 
   // 🎯 التاريخ (غيره براحتك)
-  const target = new Date("2025-12-14T21:3:00");
+  const target = new Date("2025-12-14T21:22:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -450,33 +453,12 @@ document.addEventListener("DOMContentLoaded", function(){
       m.textContent = "00";
       s.textContent = "00";
 
-      startEmojiLoop();
+        startPartyEmoji();
     }
   }
 
 });
 
-  /* ===== Lottie Emoji Logic ===== */
-const LOTTIE_URL = "https://assets9.lottiefiles.com/packages/lf20_touohxv0.json";
-let emojiStarted = false;
-
-function startEmojiLoop(){
-  if(emojiStarted) return;
-  emojiStarted = true;
-
-  document.querySelectorAll(".emoji-lottie-layer .corner").forEach(corner=>{
-    setInterval(()=>{
-      corner.innerHTML = "";
-      lottie.loadAnimation({
-        container: corner,
-        renderer: "svg",
-        loop: false,
-        autoplay: true,
-        path: LOTTIE_URL
-      });
-    }, 2800);
-  });
-}
 
 /* ========== Messages ========== */
 const lines=[...document.querySelectorAll(".lineMsg")];
@@ -610,12 +592,34 @@ function clearEffects(){
   document.querySelectorAll(".confetti-piece").forEach(c => c.remove());
 }
 
+/* ===== Party Emoji Logic ===== */
+const PARTY_LOTTIE = "https://assets10.lottiefiles.com/packages/lf20_jbrw3hcz.json"; // 🎉
+let partyStarted = false;
+
+function startPartyEmoji(){
+  if(partyStarted) return;
+  partyStarted = true;
+
+  document.querySelectorAll(".party-emoji").forEach(el=>{
+    // تشغيل متكرر بدون ما نلمس الأزرار
+    setInterval(()=>{
+      el.innerHTML = "";
+      lottie.loadAnimation({
+        container: el,
+        renderer: "svg",
+        loop: false,
+        autoplay: true,
+        path: PARTY_LOTTIE
+      });
+    }, 2600);
+  });
+}
 
 </script>
-<script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
 </body>
 
 </html>
+
 
 
 
