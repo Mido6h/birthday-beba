@@ -334,35 +334,44 @@ body{
   z-index:260;
 }
 
+  .party-layer{
+  display:none;
+}
+
 .popper{
   position:absolute;
-  width:70px;
-  height:70px;
+  width:clamp(60px, 10vw, 120px);
+  height:clamp(60px, 10vw, 120px);
+  transform-origin: center center;
 }
 
 /* الزوايا */
+/* فوق شمال */
 .popper.tl{
-  top:12px;
-  left:12px;
-  transform: rotate(135deg);
+  top:0;
+  left:0;
+  transform: translate(-35%, -35%) rotate(135deg);
 }
 
+/* فوق يمين */
 .popper.tr{
-  top:12px;
-  right:12px;
-  transform: rotate(225deg);
+  top:0;
+  right:0;
+  transform: translate(35%, -35%) rotate(225deg);
 }
 
+/* تحت شمال */
 .popper.bl{
-  bottom:12px;
-  left:12px;
-  transform: rotate(45deg);
+  bottom:0;
+  left:0;
+  transform: translate(-35%, 35%) rotate(45deg);
 }
 
+/* تحت يمين */
 .popper.br{
-  bottom:12px;
-  right:12px;
-  transform: rotate(-45deg);
+  bottom:0;
+  right:0;
+  transform: translate(35%, 35%) rotate(-45deg);
 }
 
 .popper svg{
@@ -443,7 +452,7 @@ let confettiStarted = false;
 document.addEventListener("DOMContentLoaded", function(){
 
   // 🎯 التاريخ (غيره براحتك)
-  const target = new Date("2025-12-14T22:56:00");
+  const target = new Date("2025-12-14T23:05:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -474,6 +483,8 @@ document.addEventListener("DOMContentLoaded", function(){
       h.textContent = "00";
       m.textContent = "00";
       s.textContent = "00";
+
+        document.querySelector(".party-layer").style.display = "block";
 
     }
   }
@@ -631,6 +642,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
