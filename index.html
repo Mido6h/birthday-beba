@@ -336,10 +336,19 @@ body{
 }
 
 .popper{
-  position:absolute;
-  width: clamp(90px, 14vw, 180px);
-  height: clamp(90px, 14vw, 180px);
+  position: absolute;
+
+  /* حجم ذكي حسب الشاشة */
+  width: clamp(80px, 12vw, 140px);
+  height: clamp(80px, 12vw, 140px);
+
+  /* يحافظ إنه جوه الكارد */
+  max-width: 35%;
+  max-height: 35%;
+
+  pointer-events: none;
 }
+
 
 
 
@@ -347,31 +356,32 @@ body{
 .popper.tl{
   top: 0;
   left: 0;
-  transform: rotate(135deg) translate(-30%, 30%);
+  transform-origin: 0% 100%;
+  transform: rotate(135deg);
 }
 
 .popper.tr{
   top: 0;
   right: 0;
-  transform: rotate(225deg) translate(30%, 30%);
+  transform-origin: 100% 100%;
+  transform: rotate(225deg);
 }
 
 .popper.bl{
   bottom: 0;
   left: 0;
-  transform: rotate(45deg) translate(-30%, -30%);
+  transform-origin: 0% 0%;
+  transform: rotate(45deg);
 }
 
 .popper.br{
   bottom: 0;
   right: 0;
-  transform: rotate(-45deg) translate(30%, -30%);
+  transform-origin: 100% 0%;
+  transform: rotate(-45deg);
 }
 
-.popper.tl{ transform-origin: 0% 100%; }
-.popper.tr{ transform-origin: 100% 100%; }
-.popper.bl{ transform-origin: 0% 0%; }
-.popper.br{ transform-origin: 100% 0%; }
+
 
 .popper svg{
   width:100%;
@@ -451,7 +461,7 @@ let confettiStarted = false;
 document.addEventListener("DOMContentLoaded", function(){
 
   // 🎯 التاريخ (غيره براحتك)
-  const target = new Date("2025-12-14T23:47:00");
+  const target = new Date("2025-12-14T00:3:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -641,6 +651,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
