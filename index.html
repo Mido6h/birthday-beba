@@ -426,7 +426,7 @@ let confettiStarted = false;
 document.addEventListener("DOMContentLoaded", function(){
 
   // 🎯 التاريخ (غيره براحتك)
-  const target = new Date("2025-12-14T21:35:00");
+  const target = new Date("2025-12-14T21:43:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -598,18 +598,19 @@ function clearEffects(){
 }
 
 /* ===== Party Emoji Logic ===== */
-const PARTY_LOTTIE = "https://assets10.lottiefiles.com/packages/lf20_jbrw3hcz.json"; // 🎉
+/* ===== Party Emoji Logic ===== */
+const PARTY_LOTTIE = "https://assets2.lottiefiles.com/packages/lf20_touohxv0.json";
 let partyStarted = false;
 
 function startPartyEmoji(){
-  if(partyStarted) return;
+  if (partyStarted) return;
   partyStarted = true;
 
-  document.querySelectorAll(".party-emoji").forEach(el=>{
+  document.querySelectorAll(".party-emoji").forEach(el => {
     lottie.loadAnimation({
       container: el,
       renderer: "svg",
-      loop: true,      // 👈 خليها تلف لوحدها
+      loop: true,
       autoplay: true,
       path: PARTY_LOTTIE
     });
@@ -617,10 +618,12 @@ function startPartyEmoji(){
 }
 
 
+
 </script>
 </body>
 
 </html>
+
 
 
 
