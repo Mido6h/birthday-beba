@@ -345,32 +345,38 @@ body{
 
 
 
+
 /* **ضبط الزوايا وتوجيه الوجه للمنتصف:** نستخدم قيم سالبة لسحب الإيموجي إلى ما وراء الحافة، و الـ (overflow: hidden) هيتولى مهمة قص الأجزاء الزائدة.
 */
 
+/* فوق شمال */
 .popper.tl{
   top: -10px;
   left: -10px;
-  transform: scaleX(-1) rotate(15deg);
+  transform: scaleX(-1) rotate(35deg);
 }
 
+/* فوق يمين */
 .popper.tr{
   top: -10px;
   right: -10px;
-  transform: scaleX(-1) rotate(165deg);
+  transform: scaleX(-1) rotate(145deg);
 }
 
+/* تحت يمين */
 .popper.br{
   bottom: -10px;
   right: -10px;
-  transform: scaleX(-1) rotate(195deg);
+  transform: scaleX(-1) rotate(215deg);
 }
 
+/* تحت شمال */
 .popper.bl{
   bottom: -10px;
   left: -10px;
-  transform: scaleX(-1) rotate(345deg);
+  transform: scaleX(-1) rotate(325deg);
 }
+
 
 .popper svg{
   width:100%;
@@ -452,7 +458,7 @@ let partyShown = false;
 document.addEventListener("DOMContentLoaded", function(){
 
   // 🎯 التاريخ (غيره براحتك)
-  const target = new Date("2025-12-15T01:17:00");
+  const target = new Date("2025-12-15T01:24:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -645,6 +651,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
