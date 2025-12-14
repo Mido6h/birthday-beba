@@ -393,7 +393,7 @@ let confettiStarted = false;
 (function(){
 
   // 🎯 التاريخ الثابت: 23 فبراير 2026 – الساعة 12 صباحًا
-  const target = new Date("2026-02-23T00:00:00");
+  const target = new Date(Date.now() + 1 * 60 * 1000); // بعد دقيقة من الآن
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -570,6 +570,7 @@ function clearEffects(){
 </body>
 
 </html>
+
 
 
 
