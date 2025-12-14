@@ -331,8 +331,9 @@ body{
   position:absolute;
   inset:0;
   pointer-events:none;
-  z-index:999;
+  z-index:260;
 }
+
 
   .party-layer{
   display:none;
@@ -341,42 +342,44 @@ body{
 .popper{
   position:absolute;
 
-  /* حجم ذكي */
-  width:clamp(90px, 12vw, 160px);
-  height:clamp(90px, 12vw, 160px);
+  width: clamp(140px, 18vw, 260px);
+  height: clamp(140px, 18vw, 260px);
 
-  transform-origin: 50% 50%;
+  pointer-events:none;
 }
 
+
 /* الزوايا */
+/* فوق شمال */
 /* فوق شمال */
 /* فوق شمال */
 .popper.tl{
   top:0;
   left:0;
-  transform: translate(-55%, -55%) rotate(135deg);
+  transform: rotate(135deg);
 }
 
 /* فوق يمين */
 .popper.tr{
   top:0;
   right:0;
-  transform: translate(55%, -55%) rotate(225deg);
+  transform: rotate(225deg);
 }
 
 /* تحت شمال */
 .popper.bl{
   bottom:0;
   left:0;
-  transform: translate(-55%, 55%) rotate(45deg);
+  transform: rotate(45deg);
 }
 
 /* تحت يمين */
 .popper.br{
   bottom:0;
   right:0;
-  transform: translate(55%, 55%) rotate(-45deg);
+  transform: rotate(-45deg);
 }
+
 
 
 .popper svg{
@@ -647,6 +650,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
