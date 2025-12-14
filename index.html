@@ -421,10 +421,10 @@ let confettiStarted = false;
 /* ========== Countdown ========== */
 /* ========== Countdown (FINAL – NO ZERO BUG) ========== */
   let ribbonsInterval = null;
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
 
-  // 🎯 التاريخ الثابت: 23 فبراير 2026 – الساعة 12 صباحًا
-  const target = new Date("2025-12-14T18:47:00");
+  // 🎯 التاريخ (غيره براحتك)
+  const target = new Date("2025-12-14T18:53:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -443,32 +443,28 @@ let confettiStarted = false;
     const now = new Date();
     let diff = target.getTime() - now.getTime();
 
-    // لو لسه قبل التاريخ
     if(diff > 0){
       d.textContent = String(Math.floor(diff / 86400000)).padStart(2,"0");
       h.textContent = String(Math.floor(diff / 3600000) % 24).padStart(2,"0");
       m.textContent = String(Math.floor(diff / 60000) % 60).padStart(2,"0");
       s.textContent = String(Math.floor(diff / 1000) % 60).padStart(2,"0");
-    } 
-    // لو وصلنا للتاريخ
-   else {
-  clearInterval(timer);
+    } else {
+      clearInterval(timer);
 
-  d.textContent = "00";
-  h.textContent = "00";
-  m.textContent = "00";
-  s.textContent = "00";
+      d.textContent = "00";
+      h.textContent = "00";
+      m.textContent = "00";
+      s.textContent = "00";
 
-  // 🎉 تشغيل الشرائط مرة واحدة ثم تفضل تفرقع
-  if(!ribbonsInterval){
-    launchRibbons(); // أول فرقعة
-    ribbonsInterval = setInterval(launchRibbons, 2200);
+      // 🎉 تشغيل الشرائط
+      if(!ribbonsInterval){
+        launchRibbons();
+        ribbonsInterval = setInterval(launchRibbons, 2200);
+      }
+    }
   }
-}
 
-
-})();
-
+});
 
 /* ========== Messages ========== */
 const lines=[...document.querySelectorAll(".lineMsg")];
@@ -658,6 +654,7 @@ function clearEffects(){
 </body>
 
 </html>
+
 
 
 
