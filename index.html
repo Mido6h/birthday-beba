@@ -393,20 +393,24 @@ let confettiStarted = false;
   function nextTarget(){
     const now=new Date();
     const y=now.getFullYear();
-    const t=new Date(y,1,23,0,0,0);
-    return now<=t?t:new Date(y+1,1,23,0,0,0);
+    return new Date(y,1,23,0,0,0);
   }
   let target=nextTarget();
   const d=days,h=hours,m=minutes,s=seconds;
   function tick(){
     let diff=target-new Date();
-    if(diff<0) diff=0;
+    if(diff<=0)
+    {
+      diff=0;
+      clearInterval(timer);
+    }
     d.textContent=String(Math.floor(diff/86400000)).padStart(2,"0");
     h.textContent=String(Math.floor(diff/3600000)%24).padStart(2,"0");
     m.textContent=String(Math.floor(diff/60000)%60).padStart(2,"0");
     s.textContent=String(Math.floor(diff/1000)%60).padStart(2,"0");
   }
-  tick(); setInterval(tick,1000);
+  tick(); 
+  const timer = setInterval(tick, 1000);
 })();
 
 /* ========== Messages ========== */
@@ -545,4 +549,5 @@ function clearEffects(){
 </script>
 
 </body>
+
 </html>
