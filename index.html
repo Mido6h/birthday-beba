@@ -328,11 +328,11 @@ body{
 
   /* ===== Birthday Ribbons (4 Sides, Outside Card) ===== */
 .ribbons-layer{
-  position:absolute;
-  inset:-120px;        /* تبعدها عن الصندوق */
-  pointer-events:none;
-  z-index:260;
-  overflow:visible;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 300;
+  overflow: hidden;
 }
 
 .ribbon{
@@ -361,11 +361,10 @@ body{
 
 <div class="balloons" id="balloonsRow" aria-hidden="true"></div>
 <div class="banner">❤️ HAPPY BIRTHDAY Beba ❤️</div>
-
+<div class="ribbons-layer"></div> 
 <div class="card">
   <div class="hearts-layer"></div>
   <div class="confetti-layer"></div>
-  <div class="ribbons-layer"></div> 
   <h1 class="title">عيد ميلاد سعيد لأجمل بنت عرفتها🫶<span id="name"></span></h1>
 
   <div class="countdown">
@@ -654,6 +653,7 @@ function clearEffects(){
 </body>
 
 </html>
+
 
 
 
