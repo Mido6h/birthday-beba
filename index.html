@@ -140,7 +140,7 @@ body{
   margin-left: auto;
   margin-right: auto;
   position:relative;
-  overflow: hidden !important;
+  overflow: hidden;
 }
 
 .title{
@@ -331,54 +331,46 @@ body{
   position:absolute;
   inset:0;
   pointer-events:none;
-  /* Z-index: 0 لضمان أنه خلف الكلام والعدّاد (الـ Z-index بتاع الكلام أعلى تلقائياً) */
-  z-index:0; 
-  display:none;
+  z-index:5; /* تحت النص */
 }
 
+
 .popper{
-  position: absolute;
-  /* حجم متجاوب: 180px كحد أقصى عشان يظهر زي الصورة */
-  width: clamp(100px, 15vw, 180px);
-  height: clamp(100px, 15vw, 180px);
-  pointer-events: none;
-  /* نقطة ارتكاز الدوران تكون في منتصف القمع */
-  transform-origin: center center; 
+  position:absolute;
+  width: clamp(90px, 14vw, 140px);
+  height: clamp(90px, 14vw, 140px);
+  transform-origin: center center;
 }
+
 
 /* **ضبط الزوايا وتوجيه الوجه للمنتصف:** نستخدم قيم سالبة لسحب الإيموجي إلى ما وراء الحافة، و الـ (overflow: hidden) هيتولى مهمة قص الأجزاء الزائدة.
 */
 
-/* أعلى يسار */
 .popper.tl{
-  top: -20px;
-  left: -20px;
-  /* دوران لجعله يضرب في الربع الأسفل الأيمن (نحو المنتصف) */
-  transform: rotate(135deg); 
+  top: 0;
+  left: 0;
+  transform: rotate(0deg);
 }
 
-/* أعلى يمين */
+
 .popper.tr{
-  top: -20px;
-  right: -20px;
-  /* دوران لجعله يضرب في الربع الأسفل الأيسر (نحو المنتصف) */
-  transform: rotate(225deg);
+  top: 0;
+  right: 0;
+  transform: rotate(90deg);
 }
 
-/* أسفل يسار */
-.popper.bl{
-  bottom: -20px;
-  left: -20px;
-  /* دوران لجعله يضرب في الربع الأعلى الأيمن (نحو المنتصف) */
-  transform: rotate(45deg);
-}
 
-/* أسفل يمين */
 .popper.br{
-  bottom: -20px;
-  right: -20px;
-  /* دوران لجعله يضرب في الربع الأعلى الأيسر (نحو المنتصف) */
-  transform: rotate(-45deg); /* أو 315deg */
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+
+.popper.bl{
+  bottom: 0;
+  left: 0;
+  transform: rotate(270deg);
 }
 
 .popper svg{
@@ -461,7 +453,7 @@ let confettiStarted = false;
 document.addEventListener("DOMContentLoaded", function(){
 
   // 🎯 التاريخ (غيره براحتك)
-  const target = new Date("2025-12-15T00:43:00");
+  const target = new Date("2025-12-15T00:59:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -651,6 +643,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
