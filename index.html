@@ -326,6 +326,34 @@ body{
   }
 }
 
+  /* ===== Birthday Ribbons (4 Sides, Outside Card) ===== */
+.ribbons-layer{
+  position:absolute;
+  inset:-120px;        /* تبعدها عن الصندوق */
+  pointer-events:none;
+  z-index:260;
+  overflow:visible;
+}
+
+.ribbon{
+  position:absolute;
+  width:5px;           /* حجم متوسط */
+  height:48px;
+  border-radius:3px;
+  animation:ribbonPop 1.8s ease-out forwards;
+}
+
+@keyframes ribbonPop{
+  from{
+    transform:translate(0,0) rotate(0deg);
+    opacity:1;
+  }
+  to{
+    transform:translate(var(--x), var(--y)) rotate(360deg);
+    opacity:0;
+  }
+}
+
 </style>
 </head>
 
@@ -337,6 +365,7 @@ body{
 <div class="card">
   <div class="hearts-layer"></div>
   <div class="confetti-layer"></div>
+  <div class="ribbons-layer"></div> 
   <h1 class="title">عيد ميلاد سعيد لأجمل بنت عرفتها🫶<span id="name"></span></h1>
 
   <div class="countdown">
@@ -367,6 +396,7 @@ body{
 let effectsStarted = false;
 let confettiStarted = false;
 
+
 /* ===== باقي الكود ===== */
 
 /* ========== Balloons generator ========== */
@@ -390,10 +420,11 @@ let confettiStarted = false;
 
 /* ========== Countdown ========== */
 /* ========== Countdown (FINAL – NO ZERO BUG) ========== */
+  let ribbonsInterval = null;
 (function(){
 
   // 🎯 التاريخ الثابت: 23 فبراير 2026 – الساعة 12 صباحًا
-  const target = new Date("2025-12-14T18:30:00");
+  const target = new Date("2025-12-14T18:47:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -420,14 +451,21 @@ let confettiStarted = false;
       s.textContent = String(Math.floor(diff / 1000) % 60).padStart(2,"0");
     } 
     // لو وصلنا للتاريخ
-    else {
-      clearInterval(timer);
-      d.textContent = "00";
-      h.textContent = "00";
-      m.textContent = "00";
-      s.textContent = "00";
-    }
+   else {
+  clearInterval(timer);
+
+  d.textContent = "00";
+  h.textContent = "00";
+  m.textContent = "00";
+  s.textContent = "00";
+
+  // 🎉 تشغيل الشرائط مرة واحدة ثم تفضل تفرقع
+  if(!ribbonsInterval){
+    launchRibbons(); // أول فرقعة
+    ribbonsInterval = setInterval(launchRibbons, 2200);
   }
+}
+
 
 })();
 
@@ -534,6 +572,56 @@ function createConfetti(count = 150){
     confettiPieces.push(p);
   }
 }
+  function launchRibbons(){
+  const layer = document.querySelector(".ribbons-layer");
+  if(!layer) return;
+
+  const colors = [
+    "linear-gradient(#ff4d6d,#ffd166)",
+    "linear-gradient(#4cc9f0,#cdb4db)",
+    "linear-gradient(#ffd93b,#ff922b)"
+  ];
+
+  for(let i = 0; i < 40; i++){
+    const r = document.createElement("div");
+    r.className = "ribbon";
+    r.style.background = colors[Math.floor(Math.random()*colors.length)];
+
+    const side = Math.random();
+    let x = 0, y = 0, tx = 0, ty = 0;
+
+    if(side < 0.25){           // فوق
+      x = Math.random()*100;
+      y = 0;
+      tx = (Math.random()-0.5)*200;
+      ty = -200;
+    }else if(side < 0.5){     // تحت
+      x = Math.random()*100;
+      y = 100;
+      tx = (Math.random()-0.5)*200;
+      ty = 200;
+    }else if(side < 0.75){    // يمين
+      x = 100;
+      y = Math.random()*100;
+      tx = 200;
+      ty = (Math.random()-0.5)*200;
+    }else{                    // شمال
+      x = 0;
+      y = Math.random()*100;
+      tx = -200;
+      ty = (Math.random()-0.5)*200;
+    }
+
+    r.style.left = x + "%";
+    r.style.top  = y + "%";
+    r.style.setProperty("--x", tx + "px");
+    r.style.setProperty("--y", ty + "px");
+
+    layer.appendChild(r);
+    setTimeout(()=>r.remove(), 1800);
+  }
+}
+
 
 function animateConfetti(){
   if(!effectsStarted) return; // واقفة لحد الضغط
@@ -570,6 +658,7 @@ function clearEffects(){
 </body>
 
 </html>
+
 
 
 
