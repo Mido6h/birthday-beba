@@ -328,17 +328,20 @@ body{
 
   /* ===== Party Ribbons (NEW – Independent) ===== */
 .party-ribbons-layer{
-  position: fixed;
+  position: absolute;     /* 👈 بدل fixed */
   inset: 0;
   pointer-events: none;
-  z-index: 999;
+  z-index: 3;
   overflow: hidden;
+}
+.card > *:not(.party-ribbons-layer){
+  position: relative;
+  z-index: 5;
 }
 
 .party-ribbon{
-  position: absolute;
-  width: 6px;
-  height: 42px;
+  width: clamp(4px, 0.8vw, 6px);
+  height: clamp(28px, 5vw, 42px);
   border-radius: 3px;
   animation: partyPop 1.6s ease-out forwards;
 }
@@ -362,8 +365,8 @@ body{
 
 <div class="balloons" id="balloonsRow" aria-hidden="true"></div>
 <div class="banner">❤️ HAPPY BIRTHDAY Beba ❤️</div>
-  <div class="party-ribbons-layer"></div>
 <div class="card">
+  <div class="party-ribbons-layer"></div>
   <div class="hearts-layer"></div>
   <div class="confetti-layer"></div>
   <h1 class="title">عيد ميلاد سعيد لأجمل بنت عرفتها🫶<span id="name"></span></h1>
@@ -423,7 +426,7 @@ let confettiStarted = false;
 document.addEventListener("DOMContentLoaded", function(){
 
   // 🎯 التاريخ (غيره براحتك)
-  const target = new Date("2025-12-14T19:42:00");
+  const target = new Date("2025-12-14T20:15:00");
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -454,13 +457,14 @@ document.addEventListener("DOMContentLoaded", function(){
       h.textContent = "00";
       m.textContent = "00";
       s.textContent = "00";
-
-      if(!partyStarted){
+if(!partyStarted){
   partyStarted = true;
   launchPartyRibbons();
-  setInterval(launchPartyRibbons, 2000);
-}
 
+  window.partyInterval = setInterval(() => {
+    launchPartyRibbons();
+  }, 2200);
+}
     }
   }
 
@@ -472,8 +476,7 @@ function launchPartyRibbons(){
   const layer = document.querySelector(".party-ribbons-layer");
   if(!layer) return;
 
-  const card = document.querySelector(".card");
-  const rect = card.getBoundingClientRect();
+  const rect = layer.getBoundingClientRect();
 
   const corners = [
     { x: rect.left,  y: rect.top,    dx: -180, dy: -180 }, // فوق شمال
@@ -493,8 +496,8 @@ function launchPartyRibbons(){
       const r = document.createElement("div");
       r.className = "party-ribbon";
       r.style.background = colors[Math.floor(Math.random()*colors.length)];
-      r.style.left = corner.x + "px";
-      r.style.top  = corner.y + "px";
+     r.style.left = (corner.x - rect.left) + "px";
+     r.style.top  = (corner.y - rect.top)  + "px";
       r.style.setProperty("--x", corner.dx + (Math.random()*60-30) + "px");
       r.style.setProperty("--y", corner.dy + (Math.random()*60-30) + "px");
 
@@ -542,6 +545,11 @@ resetBtn.onclick = () => {
   confettiLayer.style.display = "none"; // 👈 اخفيها
 
   clearEffects();
+  if(window.partyInterval){
+  clearInterval(window.partyInterval);
+  window.partyInterval = null;
+  partyStarted = false;
+}
 };
 
 
@@ -643,6 +651,7 @@ function clearEffects(){
 </body>
 
 </html>
+
 
 
 
