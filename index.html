@@ -326,37 +326,24 @@ body{
   }
 }
 
-  /* ===== Party Ribbons (NEW – Independent) ===== */
-.party-ribbons-layer{
-  position: absolute;     /* 👈 بدل fixed */
-  inset: 0;
-  pointer-events: none;
-  z-index: 3;
-  overflow: hidden;
-}
-.card > *:not(.party-ribbons-layer){
-  position: relative;
-  z-index: 5;
+ /* ===== Lottie Emoji (Auto Responsive) ===== */
+.emoji-lottie-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:4;
 }
 
-.party-ribbon{
-  width: clamp(4px, 0.8vw, 6px);
-  height: clamp(28px, 5vw, 42px);
-  border-radius: 3px;
-  animation: partyPop 1.6s ease-out forwards;
+.emoji-lottie-layer .corner{
+  position:absolute;
+  width:clamp(90px,18vw,160px); /* 👈 التحكم الوحيد في الحجم */
+  aspect-ratio:1;
 }
 
-@keyframes partyPop{
-  from{
-    transform: translate(0,0) rotate(0deg);
-    opacity: 1;
-  }
-  to{
-    transform: translate(var(--x), var(--y)) rotate(360deg);
-    opacity: 0;
-  }
-}
-
+.corner.tl{ top:0; left:0; }
+.corner.tr{ top:0; right:0; }
+.corner.bl{ bottom:0; left:0; }
+.corner.br{ bottom:0; right:0; }
 
 </style>
 </head>
@@ -366,7 +353,12 @@ body{
 <div class="balloons" id="balloonsRow" aria-hidden="true"></div>
 <div class="banner">❤️ HAPPY BIRTHDAY Beba ❤️</div>
 <div class="card">
-  <div class="party-ribbons-layer"></div>
+   <div class="emoji-lottie-layer">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+  </div>
   <div class="hearts-layer"></div>
   <div class="confetti-layer"></div>
   <h1 class="title">عيد ميلاد سعيد لأجمل بنت عرفتها🫶<span id="name"></span></h1>
@@ -457,56 +449,34 @@ document.addEventListener("DOMContentLoaded", function(){
       h.textContent = "00";
       m.textContent = "00";
       s.textContent = "00";
-if(!partyStarted){
-  partyStarted = true;
-  launchPartyRibbons();
 
-  window.partyInterval = setInterval(() => {
-    launchPartyRibbons();
-  }, 2200);
-}
+      startEmojiLoop();
     }
   }
 
 });
-  
-  let partyStarted = false;
 
-function launchPartyRibbons(){
-  const layer = document.querySelector(".party-ribbons-layer");
-  if(!layer) return;
+  /* ===== Lottie Emoji Logic ===== */
+const LOTTIE_URL = "https://assets9.lottiefiles.com/packages/lf20_touohxv0.json";
+let emojiStarted = false;
 
-  const rect = layer.getBoundingClientRect();
+function startEmojiLoop(){
+  if(emojiStarted) return;
+  emojiStarted = true;
 
-  const corners = [
-    { x: rect.left,  y: rect.top,    dx: -180, dy: -180 }, // فوق شمال
-    { x: rect.right, y: rect.top,    dx:  180, dy: -180 }, // فوق يمين
-    { x: rect.left,  y: rect.bottom, dx: -180, dy:  180 }, // تحت شمال
-    { x: rect.right, y: rect.bottom, dx:  180, dy:  180 }  // تحت يمين
-  ];
-
-  const colors = [
-    "linear-gradient(#ff4d6d,#ffd166)",
-    "linear-gradient(#4cc9f0,#cdb4db)",
-    "linear-gradient(#ffd93b,#ff922b)"
-  ];
-
-  corners.forEach(corner=>{
-    for(let i=0;i<10;i++){
-      const r = document.createElement("div");
-      r.className = "party-ribbon";
-      r.style.background = colors[Math.floor(Math.random()*colors.length)];
-     r.style.left = (corner.x - rect.left) + "px";
-     r.style.top  = (corner.y - rect.top)  + "px";
-      r.style.setProperty("--x", corner.dx + (Math.random()*60-30) + "px");
-      r.style.setProperty("--y", corner.dy + (Math.random()*60-30) + "px");
-
-      layer.appendChild(r);
-      setTimeout(()=>r.remove(),1600);
-    }
+  document.querySelectorAll(".emoji-lottie-layer .corner").forEach(corner=>{
+    setInterval(()=>{
+      corner.innerHTML = "";
+      lottie.loadAnimation({
+        container: corner,
+        renderer: "svg",
+        loop: false,
+        autoplay: true,
+        path: LOTTIE_URL
+      });
+    }, 2800);
   });
 }
-
 
 /* ========== Messages ========== */
 const lines=[...document.querySelectorAll(".lineMsg")];
@@ -545,11 +515,6 @@ resetBtn.onclick = () => {
   confettiLayer.style.display = "none"; // 👈 اخفيها
 
   clearEffects();
-  if(window.partyInterval){
-  clearInterval(window.partyInterval);
-  window.partyInterval = null;
-  partyStarted = false;
-}
 };
 
 
@@ -647,10 +612,11 @@ function clearEffects(){
 
 
 </script>
-
+<script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
 </body>
 
 </html>
+
 
 
 
