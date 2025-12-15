@@ -4,13 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Beba❤</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
 :root{
---bg-1:#02101b;   /* أسود هادي */
+--bg-1:#02101b;
   --bg-2:#0fa2ce;
   --muted:#ffffff;
   --accent-start:#8fc7ed;
@@ -18,36 +17,27 @@
   --card-bg: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(0,0,0,0.02));
   --glass-border: rgba(255,255,255,0.06);
 }
-
-
 *{box-sizing:border-box}
-
-/* base */
 html, body{
   height:100%;
   width:100%;
   max-width:100%;
   overflow-x:hidden;
 }
-
 body{
   margin:0;
   font-family:'Cairo',sans-serif;
   background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
   color:#eef6ff;
-
   display:flex;
-  justify-content:center;   /* توسيط أفقي بس */
-  align-items:flex-start;   /* 👈 مهم جدًا */
+  justify-content:center;
+  align-items:flex-start;
   overscroll-behavior-x: none;
   padding:clamp(14px,4vw,28px);
   position:relative;
   overflow-x:hidden;
   min-height:100vh;
 }
-
-
-/* FIXED BALLOONS ROW */
 .balloons {
   position: fixed;
   top: 6px;
@@ -63,7 +53,6 @@ body{
   padding: 4px clamp(10px,4vw,4%);
   overflow: hidden;
 }
-
 .balloon {
   width: clamp(28px,5vw,40px);
   height: clamp(38px,7vw,52px);
@@ -74,7 +63,6 @@ body{
               0 6px 12px rgba(0,0,0,0.22);
   animation: float var(--t, 4.6s) ease-in-out infinite;
 }
-
 .balloon::after {
   content: "";
   position: absolute;
@@ -86,57 +74,42 @@ body{
   background: rgba(255,255,255,0.25);
   border-radius: 2px;
 }
-
 @keyframes float {
   0%   { transform: translateY(0) rotate(-2.5deg); }
   50%  { transform: translateY(-10px) rotate(2.5deg); }
   100% { transform: translateY(0) rotate(-2.5deg); }
 }
-
-/* balloon colors */
 .b1 { background: linear-gradient(180deg, #ffd1dc, #ff8aa3); }
 .b2 { background: linear-gradient(180deg, #c6b3ff, #9b7aff); }
 .b3 { background: linear-gradient(180deg, #8fe8ff, #4ab6f0); }
 .b4 { background: linear-gradient(180deg, #ffd98a, #ffb647); }
 .b5 { background: linear-gradient(180deg, #ffd6f6, #ff9cea); }
 .b6 { background: linear-gradient(180deg, #ffd1a9, #ffb86b); }
-
-/* banner */
 .banner{
   position: fixed;
   top: clamp(60px, 10vw, 88px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 220;
-
   display: flex;
   align-items: center;
   justify-content: center;
   gap: clamp(6px, 2vw, 10px);
-
   width: clamp(220px, 80vw, 420px);
   min-height: clamp(34px, 8vw, 42px);
-
   padding: clamp(6px, 2vw, 12px) clamp(14px, 5vw, 24px);
-
   background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
   color: #08131f;
-
   font-weight: 800;
   font-size: clamp(14px, 4vw, 22px);
   line-height: 1.2;
   text-align: center;
-
   border-radius: 999px;
   box-shadow: 0 10px 26px rgba(0,0,0,0.35);
   font-family: 'Pacifico', cursive;
-
-  white-space: normal;      /* 👈 يسمح ينزل سطر */
-  word-break: break-word;  /* 👈 يمنع الخروج */
+  white-space: normal;
+  word-break: break-word;
 }
-
-
-/* card */
 .card{
   width:100%;
   max-width:820px;
@@ -159,22 +132,18 @@ body{
   position:relative;
   overflow: hidden;
 }
-
 .title{
   font-size: clamp(18px, 2.5vw, 32px);
   font-weight: 800;
   margin: 0;
   text-align: center;
 }
-
-
 .countdown{
   display:flex;
   gap:12px;
   flex-wrap:wrap;
   justify-content:center;
 }
-
 .cell{
   width:clamp(56px,14vw,68px);
   height:clamp(56px,14vw,68px);
@@ -189,7 +158,6 @@ body{
   box-shadow:0 10px 22px rgba(0,0,0,0.45);
   border:1px solid rgba(255,255,255,0.03);
 }
-
 .cell .num{
   font-size:clamp(14px,4vw,17px);
   font-weight:800;
@@ -200,7 +168,6 @@ body{
   color:var(--muted);
   margin-top:6px;
 }
-
 .controls{
   display:flex;
   gap:12px;
@@ -208,7 +175,6 @@ body{
   flex-wrap:wrap;
   justify-content:center;
 }
-
 .btn{
   padding:10px 14px;
   border:none;
@@ -218,14 +184,11 @@ body{
   background:linear-gradient(90deg,var(--accent-start),var(--accent-end));
   color:#08131f;
 }
-
 .btn.ghost{
   background:transparent;
   color:#c4d0df;
   border:1px solid rgba(255,255,255,0.06);
 }
-
-/* MESSAGE */
 .message-box{
   background:rgba(255,255,255,0.02);
   padding:16px 18px;
@@ -235,21 +198,18 @@ body{
   max-width:clamp(260px,90vw,760px);
   text-align:center;
 }
-
 .lineMsg{
-  opacity:1;              /* مهم */
+  opacity:1;
   font-size:17px;
   margin:8px 0;
   color:#fff;
-  min-height:1.4em;       /* يمنع القفز */
-  white-space: pre-wrap;  /* علشان العربي */
+  min-height:1.4em;
+  white-space: pre-wrap;
 }
-
 .lineMsg.visible{
   opacity:1;
   transform:translateY(0);
 }
-
 .signature{
   margin-top:10px;
   color:var(--muted);
@@ -258,33 +218,26 @@ body{
   text-align:center;
   width:100%;
 }
-
-/* small screens */
 @media(max-width:420px){
   .balloons{display:none}
 }
-
-/* reduce motion */
 @media(prefers-reduced-motion:reduce){
   .balloon{animation:none}
 }
-/* ===== Hearts Overlay (Outside + Higher) ===== */
 .hearts-layer{
   position:absolute;
-  inset:-20px;            /* يخليها تطلع برة الصندوق */
+  inset:-20px;
   pointer-events:none;
   z-index:240;
-  overflow:visible;       /* مهم عشان تظهر برة */
+  overflow:visible;
 }
-
 .heart{
   position:absolute;
   font-size:20px;
-  color:#ff0000;          /* أحمر صريح */
+  color:#ff0000;
   opacity:0;
   animation:heartJump 3.5s ease-out forwards;
 }
-
 @keyframes heartJump{
   0%{
     transform:translateY(0) scale(.8);
@@ -292,18 +245,16 @@ body{
   }
   15%{opacity:1}
   100%{
-    transform:translateY(-500px) scale(1.3); /* قفزة أعلى */
+    transform:translateY(-500px) scale(1.3);
     opacity:0;
   }
 }
-/* ===== Confetti OUTSIDE Card (NO OVERLAP) ===== */
 .confetti-layer{
   position:absolute;
-  inset:-80px;                 /* مساحة حوالين الصندوق */
+  inset:-80px;
   pointer-events:none;
   z-index:245;
   display:none;   
-  /* ثقب في النص على قد الصندوق */
   -webkit-mask:
     radial-gradient(
       farthest-side at center,
@@ -317,7 +268,6 @@ body{
       black 64%
     );
 }
-
 .confetti-piece{
   position:absolute;
   width:6px;
@@ -325,7 +275,6 @@ body{
   border-radius:50%;
   opacity:1;
 }
-
 @keyframes confettiBurst{
   from{
     transform:translate(0,0) scale(1);
@@ -336,90 +285,60 @@ body{
     opacity:1;
   }
 }
-
 @media (max-width: 600px){
   .title{
     font-size: 20px;
     line-height: 1.4;
   }
 }
-
-/* ===== Party Popper (النسخة النهائية والمضبوطة) ===== */
 .party-layer{
   position:absolute;
   inset:0;
   pointer-events:none;
-  z-index:5; /* تحت النص */
+  z-index:5;
   display: none;
 }
-
-
 .popper{
   position:absolute;
   width: clamp(90px, 14vw, 140px);
   height: clamp(90px, 14vw, 140px);
   transform-origin: center center;
 }
-
-
-
-
-/* **ضبط الزوايا وتوجيه الوجه للمنتصف:** نستخدم قيم سالبة لسحب الإيموجي إلى ما وراء الحافة، و الـ (overflow: hidden) هيتولى مهمة قص الأجزاء الزائدة.
-*/
-
-/* فوق شمال */
 .popper.tl{
   top: -10px;
   left: -10px;
   transform: scaleX(-1) rotate(-90deg);
 }
-
-/* فوق يمين */
 .popper.tr{
   top: -10px;
   right: -10px;
   transform: scaleX(-1) rotate(180deg);
 }
-
-/* تحت يمين */
 .popper.br{
   bottom: -10px;
   right: -10px;
   transform: scaleX(-1) rotate(90deg);
 }
-
-
-/* تحت شمال */
 .popper.bl{
   bottom: -10px;
   left: -10px;
   transform: scaleX(-1) rotate(-360deg);
 }
-
-
 .popper svg{
   width:100%;
   height:100%;
   display: block;
 }
-
-/* ================= NIGHT TOUCH (OPTIONAL) ================= */
-
-/* توهج قمر خفيف للكارد */
 .card{
   box-shadow:
     0 30px 80px rgba(0,0,0,0.6),
     0 0 60px rgba(120,190,255,0.15);
 }
-
-/* توهج هادي للبانر */
 .banner{
   box-shadow:
     0 10px 26px rgba(0,0,0,0.35),
     0 0 22px rgba(180,220,255,0.3);
 }
-
-/* نبض بطيء زي ضوء القمر */
 @keyframes moonPulse{
   0%,100%{
     box-shadow:
@@ -432,24 +351,19 @@ body{
       0 0 28px rgba(180,220,255,0.45);
   }
 }
-
 .banner{
   animation: moonPulse 6s ease-in-out infinite;
 }
-/* ========================================================== */
-
-/* ================= DYNAMIC STARS ================= */
 .stars{
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 50vh;                 /* السما بس */
+  height: 50vh;
   pointer-events: none;
   z-index: 2;
   overflow: hidden;
 }
-
 .star{
   position: absolute;
   background: white;
@@ -458,27 +372,22 @@ body{
   animation: twinkle 3s ease-in-out infinite;
   box-shadow: 0 0 6px rgba(255,255,255,.9);
 }
-
 @keyframes twinkle{
   0%   { opacity: .4; transform: scale(.8); }
   50%  { opacity: 1;  transform: scale(1.2); }
   100% { opacity: .4; transform: scale(.8); }
 }
-/* ================================================ */
-
 
 </style>
 </head>
 <body>
 <div class="stars"></div>
-
 <div class="balloons" id="balloonsRow" aria-hidden="true"></div>
 <div class="banner">❤️ HAPPY BIRTHDAY Beba ❤️</div>
 <div class="card">
   <div class="hearts-layer"></div>
   <div class="confetti-layer"></div>
-  <!-- Party Popper Layer -->
-<div class="party-layer">
+  <div class="party-layer">
   <div class="popper tl"></div>
   <div class="popper tr"></div>
   <div class="popper bl"></div>
@@ -506,20 +415,15 @@ body{
 
   <div class="signature">💕 CREATED BY MIDO 💕</div>
 </div>
-
 <audio id="bgAudio" src="birthday.mp3" preload="auto"></audio>
-
 <script>
-/* ===== المتغيرات (لازم فوق) ===== */
 let effectsStarted = false;
 let confettiStarted = false;
 let partyShown = false;
 let messageTimers = [];
 let typingInterval = null;
 let typingStopped = false;
-/* ===== باقي الكود ===== */
 
-/* ========== Balloons generator ========== */
 (function(){
   const row = document.getElementById("balloonsRow");
   const colors = ["b1","b2","b3","b4","b5","b6"];
@@ -537,24 +441,16 @@ let typingStopped = false;
   window.addEventListener("resize",()=>setTimeout(render,120));
 })();
 
-
-/* ========== Countdown ========== */
-/* ========== Countdown (FINAL – NO ZERO BUG) ========== */
 document.addEventListener("DOMContentLoaded", function(){
-
-  // 🎯 التاريخ (غيره براحتك)
-  const target = new Date(2025, 11, 15, 9, 49, 0);
-
+  const target = new Date(2026, 1, 23, 0, 0, 0);
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
   const m = document.getElementById("minutes");
   const s = document.getElementById("seconds");
-
   if(!d || !h || !m || !s){
     console.error("Countdown elements not found");
     return;
   }
-
   const timer = setInterval(tick, 1000);
   tick();
 
@@ -568,25 +464,18 @@ document.addEventListener("DOMContentLoaded", function(){
       m.textContent = String(Math.floor(diff / 60000) % 60).padStart(2,"0");
       s.textContent = String(Math.floor(diff / 1000) % 60).padStart(2,"0");
     } else {
-  if (partyShown) return;   // 🔒 يمنع أي تنفيذ بدري
+  if (partyShown) return;
   partyShown = true;
-
   clearInterval(timer);
-
   d.textContent = "00";
   h.textContent = "00";
   m.textContent = "00";
   s.textContent = "00";
-
   document.querySelector(".party-layer").style.display = "block";
 }
-
   }
-
 });
 
-
-/* ========== Messages ========== */
 const lines=[...document.querySelectorAll(".lineMsg")];
 const startBtn = document.getElementById("startBtn");
 const resetBtn = document.getElementById("resetBtn");
@@ -599,8 +488,6 @@ lines.forEach(line => {
 
 startBtn.onclick = () => {
   bgAudio.play().catch(()=>{});
-
-  // 🔄 إعادة ضبط
   typingStopped = false;
   messageTimers.forEach(t => clearTimeout(t));
   messageTimers = [];
@@ -612,14 +499,11 @@ startBtn.onclick = () => {
   });
 
   let lineIndex = 0;
-
   function typeLine() {
     if (lineIndex >= lines.length || typingStopped) return;
-
     const line = lines[lineIndex];
     const text = line.dataset.text;
     let charIndex = 0;
-
     line.classList.add("visible");
     line.textContent = "";
 
@@ -628,151 +512,115 @@ startBtn.onclick = () => {
         clearInterval(typingInterval);
         return;
       }
-
       line.textContent += text[charIndex];
       charIndex++;
-
       if (charIndex >= text.length) {
         clearInterval(typingInterval);
         lineIndex++;
-
-        const t = setTimeout(typeLine, 600); // مسافة بين الجمل
+        const t = setTimeout(typeLine, 600);
         messageTimers.push(t);
       }
-    }, 40); // سرعة الكتابة
+    }, 40);
   }
 
   typeLine();
-
   effectsStarted = true;
   const layer = document.querySelector(".confetti-layer");
 layer.style.display = "block";
-
 if(!confettiStarted){
   createConfetti(180);
   confettiStarted = true;
 }
-
 animateConfetti();
-
 };
-
-
 
 resetBtn.onclick = () => {
   bgAudio.pause();
   bgAudio.currentTime = 0;
-
   typingStopped = true;
-
   if (typingInterval) clearInterval(typingInterval);
   messageTimers.forEach(t => clearTimeout(t));
   messageTimers = [];
-
   lines.forEach(line => {
     line.textContent = "";
     line.classList.remove("visible");
   });
-
   effectsStarted = false;
   confettiStarted = false;
-
   document.querySelector(".confetti-layer").style.display = "none";
-
   clearEffects();
 };
 
-
-
-/* ===== Hearts Effect (Outside + Higher) ===== */
-/* ===== Hearts Effect (FIXED & CLEAN) ===== */
 (function(){
   const layer = document.querySelector(".hearts-layer");
   if(!layer) return;
-
   setInterval(() => {
-    if(!effectsStarted) return; // مش هيشتغل غير بعد الضغط
-
-    for(let i = 0; i < 7; i++){ // عدد القلوب
+    if(!effectsStarted) return;
+    for(let i = 0; i < 7; i++){
       const h = document.createElement("div");
       h.className = "heart";
       h.textContent = "❤";
 
       h.style.left = Math.random() * 110 - 5 + "%";
       h.style.bottom = "0";
-
       layer.appendChild(h);
       setTimeout(() => h.remove(), 3500);
     }
   }, 600);
 })();
 
-/* ===== Confetti Outside Card Movement ===== */
 const confettiLayer = document.querySelector(".confetti-layer");
 const confettiPieces = [];
 
 function createConfetti(count = 150){
   const colors = ["#ff3b3b","#ffd93b","#3bff9e","#3bbcff","#c77dff"];
-  const padding = 40; // مسافة أمان بعيد عن الصندوق
-
+  const padding = 40;
   for(let i=0;i<count;i++){
     const p = document.createElement("div");
     p.className = "confetti-piece";
     p.style.background = colors[Math.floor(Math.random()*colors.length)];
 
-    // بداية الحركة حوالين الصندوق (مش جوّه)
     const side = Math.random();
-    if(side < 0.25){ // فوق
+    if(side < 0.25){
       p.x = Math.random()*confettiLayer.offsetWidth;
       p.y = 0;
-    }else if(side < 0.5){ // يمين
+    }else if(side < 0.5){
       p.x = confettiLayer.offsetWidth;
       p.y = Math.random()*confettiLayer.offsetHeight;
-    }else if(side < 0.75){ // تحت
+    }else if(side < 0.75){
       p.x = Math.random()*confettiLayer.offsetWidth;
       p.y = confettiLayer.offsetHeight;
-    }else{ // شمال
+    }else{
       p.x = 0;
       p.y = Math.random()*confettiLayer.offsetHeight;
     }
-
     p.vx = (Math.random()-0.5)*2;
     p.vy = (Math.random()-0.5)*2;
-
     p.style.left = p.x + "px";
     p.style.top  = p.y + "px";
-
     confettiLayer.appendChild(p);
     confettiPieces.push(p);
   }
 }
 
 function animateConfetti(){
-  if(!effectsStarted) return; // واقفة لحد الضغط
-
+  if(!effectsStarted) return;
   const w = confettiLayer.offsetWidth;
   const h = confettiLayer.offsetHeight;
-
   confettiPieces.forEach(p=>{
     p.x += p.vx;
     p.y += p.vy;
-
     if(p.x < 0 || p.x > w) p.vx *= -1;
     if(p.y < 0 || p.y > h) p.vy *= -1;
-
     p.style.left = p.x + "px";
     p.style.top  = p.y + "px";
   });
-
   requestAnimationFrame(animateConfetti);
 }
 
-
 function clearEffects(){
-  // امسح القلوب
   document.querySelectorAll(".heart").forEach(h => h.remove());
 
-  // امسح الزينة
   document.querySelectorAll(".confetti-piece").forEach(c => c.remove());
 }
 </script>
@@ -790,28 +638,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-  
-/* ===== STAR CONTROLLER ===== */
-const STAR_COUNT = 200;   // ⭐⭐ غير الرقم هنا بس
 
+const STAR_COUNT = 200;
 const starsBox = document.querySelector(".stars");
-
 for(let i = 0; i < STAR_COUNT; i++){
   const star = document.createElement("div");
   star.className = "star";
-
-  const size = Math.random() * 2 + 1; // 1px → 3px
+  const size = Math.random() * 2 + 1;
   star.style.width  = size + "px";
   star.style.height = size + "px";
-
   star.style.left = Math.random() * 100 + "%";
   star.style.top  = Math.random() * 100 + "%";
-
   star.style.animationDuration = (2 + Math.random() * 3) + "s";
-
   starsBox.appendChild(star);
 }
-
 </script>
 </body>
 </html>
