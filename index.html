@@ -10,11 +10,15 @@
 
 <style>
 :root{
-  --bg-1:#1b0f15; --bg-2:#321826; --muted:#d1c4c9;
-  --accent-start:#ffb86b; --accent-end:#ff9a5b;
+--bg-1:#02101b;   /* أسود هادي */
+  --bg-2:#0fa2ce;
+  --muted:#ffffff;
+  --accent-start:#8fc7ed;
+  --accent-end:#2492e1;
   --card-bg: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(0,0,0,0.02));
   --glass-border: rgba(255,255,255,0.06);
 }
+
 
 *{box-sizing:border-box}
 
@@ -99,25 +103,38 @@ body{
 
 /* banner */
 .banner{
-  position:fixed;
-  top:clamp(78px,14vw,88px);
-  left:50%;
-  transform:translateX(-50%);
-  z-index:220;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:clamp(260px,80vw,420px);
-  height:clamp(36px,8vw,40px);
-  background:linear-gradient(90deg,var(--accent-start),var(--accent-end));
-  color:#08131f;
-  font-weight:800;
-  font-size: clamp(18px,4.5vw,24px);
-  letter-spacing:1px;
-  border-radius:999px;
-  box-shadow:0 10px 26px rgba(0,0,0,0.35);
+  position: fixed;
+  top: clamp(60px, 10vw, 88px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 220;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 2vw, 10px);
+
+  width: clamp(220px, 80vw, 420px);
+  min-height: clamp(34px, 8vw, 42px);
+
+  padding: clamp(6px, 2vw, 12px) clamp(14px, 5vw, 24px);
+
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  color: #08131f;
+
+  font-weight: 800;
+  font-size: clamp(14px, 4vw, 22px);
+  line-height: 1.2;
+  text-align: center;
+
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.35);
   font-family: 'Pacifico', cursive;
+
+  white-space: normal;      /* 👈 يسمح ينزل سطر */
+  word-break: break-word;  /* 👈 يمنع الخروج */
 }
+
 
 /* card */
 .card{
@@ -220,13 +237,14 @@ body{
 }
 
 .lineMsg{
-  opacity:0;
-  transform:translateY(8px);
-  transition:opacity 360ms, transform 360ms;
+  opacity:1;              /* مهم */
   font-size:17px;
   margin:8px 0;
   color:#fff;
+  min-height:1.4em;       /* يمنع القفز */
+  white-space: pre-wrap;  /* علشان العربي */
 }
+
 .lineMsg.visible{
   opacity:1;
   transform:translateY(0);
@@ -378,18 +396,6 @@ body{
   transform: scaleX(-1) rotate(-360deg);
 }
 
-.popper.mid-left{
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%) rotate(140deg);
-}
-
-.popper.mid-right{
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%) rotate(-60deg);
-}
-
 
 .popper svg{
   width:100%;
@@ -397,10 +403,74 @@ body{
   display: block;
 }
 
-  
+/* ================= NIGHT TOUCH (OPTIONAL) ================= */
+
+/* توهج قمر خفيف للكارد */
+.card{
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 0 60px rgba(120,190,255,0.15);
+}
+
+/* توهج هادي للبانر */
+.banner{
+  box-shadow:
+    0 10px 26px rgba(0,0,0,0.35),
+    0 0 22px rgba(180,220,255,0.3);
+}
+
+/* نبض بطيء زي ضوء القمر */
+@keyframes moonPulse{
+  0%,100%{
+    box-shadow:
+      0 10px 26px rgba(0,0,0,0.35),
+      0 0 18px rgba(180,220,255,0.25);
+  }
+  50%{
+    box-shadow:
+      0 10px 26px rgba(0,0,0,0.35),
+      0 0 28px rgba(180,220,255,0.45);
+  }
+}
+
+.banner{
+  animation: moonPulse 6s ease-in-out infinite;
+}
+/* ========================================================== */
+
+/* ================= DYNAMIC STARS ================= */
+.stars{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50vh;                 /* السما بس */
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.star{
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 3s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(255,255,255,.9);
+}
+
+@keyframes twinkle{
+  0%   { opacity: .4; transform: scale(.8); }
+  50%  { opacity: 1;  transform: scale(1.2); }
+  100% { opacity: .4; transform: scale(.8); }
+}
+/* ================================================ */
+
+
 </style>
 </head>
 <body>
+<div class="stars"></div>
 
 <div class="balloons" id="balloonsRow" aria-hidden="true"></div>
 <div class="banner">❤️ HAPPY BIRTHDAY Beba ❤️</div>
@@ -413,8 +483,6 @@ body{
   <div class="popper tr"></div>
   <div class="popper bl"></div>
   <div class="popper br"></div>
-  <div class="popper mid-left"></div>
-  <div class="popper mid-right"></div>
 </div>
   <h1 class="title">عيد ميلاد سعيد لأجمل بنت شوفتها🫶<span id="name"></span></h1>
 
@@ -446,7 +514,9 @@ body{
 let effectsStarted = false;
 let confettiStarted = false;
 let partyShown = false;
-
+let messageTimers = [];
+let typingInterval = null;
+let typingStopped = false;
 /* ===== باقي الكود ===== */
 
 /* ========== Balloons generator ========== */
@@ -473,7 +543,7 @@ let partyShown = false;
 document.addEventListener("DOMContentLoaded", function(){
 
   // 🎯 التاريخ (غيره براحتك)
-  const target = new Date(2026, 1, 23, 0, 0, 0);
+  const target = new Date(2025, 11, 15, 9, 49, 0);
 
   const d = document.getElementById("days");
   const h = document.getElementById("hours");
@@ -518,42 +588,100 @@ document.addEventListener("DOMContentLoaded", function(){
 
 /* ========== Messages ========== */
 const lines=[...document.querySelectorAll(".lineMsg")];
+const startBtn = document.getElementById("startBtn");
+const resetBtn = document.getElementById("resetBtn");
+const bgAudio  = document.getElementById("bgAudio");
+
+lines.forEach(line => {
+  line.dataset.text = line.textContent;
+  line.textContent = "";
+});
+
 startBtn.onclick = () => {
   bgAudio.play().catch(()=>{});
-  lines.forEach(l => l.classList.remove("visible"));
-  lines.forEach((l,i)=>setTimeout(()=>l.classList.add("visible"), i*450));
 
-  effectsStarted = true;
+  // 🔄 إعادة ضبط
+  typingStopped = false;
+  messageTimers.forEach(t => clearTimeout(t));
+  messageTimers = [];
+  if (typingInterval) clearInterval(typingInterval);
 
-  const layer = document.querySelector(".confetti-layer");
+  lines.forEach(line => {
+    line.textContent = "";
+    line.classList.remove("visible");
+  });
 
-  // 1️⃣ أظهر الزينة الأول
-  layer.style.display = "block";
+  let lineIndex = 0;
 
-  // 2️⃣ أنشئ الزينة لو لسه
-  if(!confettiStarted){
-    createConfetti(180);   // العدد اللي يعجبك
-    confettiStarted = true;
+  function typeLine() {
+    if (lineIndex >= lines.length || typingStopped) return;
+
+    const line = lines[lineIndex];
+    const text = line.dataset.text;
+    let charIndex = 0;
+
+    line.classList.add("visible");
+    line.textContent = "";
+
+    typingInterval = setInterval(() => {
+      if (typingStopped) {
+        clearInterval(typingInterval);
+        return;
+      }
+
+      line.textContent += text[charIndex];
+      charIndex++;
+
+      if (charIndex >= text.length) {
+        clearInterval(typingInterval);
+        lineIndex++;
+
+        const t = setTimeout(typeLine, 600); // مسافة بين الجمل
+        messageTimers.push(t);
+      }
+    }, 40); // سرعة الكتابة
   }
 
-  // 3️⃣ شغّل الحركة بعد الإنشاء
-  animateConfetti();
+  typeLine();
+
+  effectsStarted = true;
+  const layer = document.querySelector(".confetti-layer");
+layer.style.display = "block";
+
+if(!confettiStarted){
+  createConfetti(180);
+  confettiStarted = true;
+}
+
+animateConfetti();
+
 };
+
 
 
 resetBtn.onclick = () => {
   bgAudio.pause();
   bgAudio.currentTime = 0;
-  lines.forEach(l=>l.classList.remove("visible"));
+
+  typingStopped = true;
+
+  if (typingInterval) clearInterval(typingInterval);
+  messageTimers.forEach(t => clearTimeout(t));
+  messageTimers = [];
+
+  lines.forEach(line => {
+    line.textContent = "";
+    line.classList.remove("visible");
+  });
 
   effectsStarted = false;
   confettiStarted = false;
 
-  const confettiLayer = document.querySelector(".confetti-layer");
-  confettiLayer.style.display = "none"; // 👈 اخفيها
+  document.querySelector(".confetti-layer").style.display = "none";
 
   clearEffects();
 };
+
 
 
 /* ===== Hearts Effect (Outside + Higher) ===== */
@@ -663,6 +791,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
   
+/* ===== STAR CONTROLLER ===== */
+const STAR_COUNT = 200;   // ⭐⭐ غير الرقم هنا بس
+
+const starsBox = document.querySelector(".stars");
+
+for(let i = 0; i < STAR_COUNT; i++){
+  const star = document.createElement("div");
+  star.className = "star";
+
+  const size = Math.random() * 2 + 1; // 1px → 3px
+  star.style.width  = size + "px";
+  star.style.height = size + "px";
+
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top  = Math.random() * 100 + "%";
+
+  star.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+  starsBox.appendChild(star);
+}
+
 </script>
 </body>
 </html>
