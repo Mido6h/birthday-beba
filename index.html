@@ -589,7 +589,7 @@ resetBtn.onclick = () => {
   if(!layer) return;
   setInterval(() => {
     if(!effectsStarted) return;
-    for(let i = 0; i < 7; i++){
+    for(let i = 0; i < 3; i++){
       const h = document.createElement("div");
       h.className = "heart";
       h.textContent = "❤";
@@ -599,7 +599,7 @@ resetBtn.onclick = () => {
       layer.appendChild(h);
       setTimeout(() => h.remove(), 3500);
     }
-  }, 600);
+  }, 900);
 })();
 
 
@@ -678,3 +678,4 @@ document.querySelectorAll(".cell").forEach(cell => {
 </script>
 </body>
 </html>
+
