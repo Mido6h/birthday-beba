@@ -69,6 +69,7 @@ body{
   box-shadow: inset -5px -8px 12px rgba(255,255,255,0.07),
               0 6px 12px rgba(0,0,0,0.22);
   animation: float var(--t, 4.6s) ease-in-out infinite;
+  will-change: transform, opacity;
 }
 .balloon::after {
   content: "";
@@ -258,6 +259,7 @@ body{
   color:#e01b1b;
   opacity:0;
   animation:heartJump 3.5s ease-out forwards;
+  will-change: transform, opacity;
 }
 @keyframes heartJump{
   0%{
@@ -358,6 +360,7 @@ body{
   opacity: 0.8;
   box-shadow: 0 0 6px rgba(255,255,255,.9);
   animation: twinkle 3s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 
@@ -410,6 +413,19 @@ body{
     opacity: 0;
   }
 }
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+@media (max-width:480px){
+  .heart{
+    animation-duration: 4.5s;
+  }
+}
+
 
 
 </style>
@@ -678,4 +694,3 @@ document.querySelectorAll(".cell").forEach(cell => {
 </script>
 </body>
 </html>
-
