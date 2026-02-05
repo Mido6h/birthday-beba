@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Beba❤</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg-1:#02101b;
+  --bg-2:#0fa2ce;
+  --muted:#ffffff;
+  --accent-start:#217cc3;
+  --accent-end:#198bb5;
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(0,0,0,0.02));
+  --glass-border: rgba(255,255,255,0.06);
+}
+*{box-sizing:border-box}
+html, body{
+  height:100%;
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+body{
+  margin:0;
+  font-family:'Cairo',sans-serif;
+  background:
+  linear-gradient(
+    180deg,
+    #02101b 0%,
+    #042436 35%,
+    #0a6fa1 70%,
+    #0fa2ce 100%
+  );
+
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  overscroll-behavior-x: none;
+  padding:clamp(14px,4vw,28px);
+  position:relative;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+.balloons {
+  position: fixed;
+  top: 6px;
+  left: 0;
+  right: 0;
+  height: clamp(52px,10vw,64px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 180;
+  padding: 4px clamp(10px,4vw,4%);
+  overflow: hidden;
+}
+.balloon {
+  width: clamp(28px,5vw,40px);
+  height: clamp(38px,7vw,52px);
+  border-radius: 50% 50% 44% 44%;
+  position: relative;
+  transform-origin: bottom center;
+  box-shadow: inset -5px -8px 12px rgba(255,255,255,0.07),
+              0 6px 12px rgba(0,0,0,0.22);
+  animation: float var(--t, 4.6s) ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.balloon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -22px;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 22px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 2px;
+}
+@keyframes float {
+  0%   { transform: translateY(0) rotate(-2.5deg); }
+  50%  { transform: translateY(-10px) rotate(2.5deg); }
+  100% { transform: translateY(0) rotate(-2.5deg); }
+}
+.b1 { background: linear-gradient(180deg, #ffd1dc, #ff8aa3); }
+.b2 { background: linear-gradient(180deg, #c6b3ff, #9b7aff); }
+.b3 { background: linear-gradient(180deg, #8fe8ff, #4ab6f0); }
+.b4 { background: linear-gradient(180deg, #ffd98a, #ffb647); }
+.b5 { background: linear-gradient(180deg, #ffd6f6, #ff9cea); }
+.b6 { background: linear-gradient(180deg, #ffd1a9, #ffb86b); }
+.banner{
+  position: fixed;
+  top: clamp(60px, 10vw, 88px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 220;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 2vw, 10px);
+  width: clamp(220px, 80vw, 420px);
+  min-height: clamp(34px, 8vw, 42px);
+  padding: clamp(6px, 2vw, 12px) clamp(14px, 5vw, 24px);
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  color: #08131f;
+  font-weight: 800;
+  font-size: clamp(14px, 4vw, 22px);
+  line-height: 1.2;
+  text-align: center;
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+  font-family: 'Pacifico', cursive;
+  white-space: normal;
+  word-break: break-word;
+}
+.card{
+  margin-top:140px;
+  width:100%;
+  max-width:820px;
+  border-radius:18px;
+  padding:clamp(18px,4vw,30px);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,0.035),
+    rgba(0,0,0,0.28)
+  );
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 0 60px rgba(120,190,255,0.15);
+
+  backdrop-filter:blur(8px);
+  position:relative;
+  z-index:230;
+}
+
+.title{
+  font-size: clamp(18px, 2.5vw, 32px);
+  font-weight: 800;
+  margin: 0;
+  text-align: center;
+  color: #ffffff;
+}
+.countdown{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.cell{
+  width:clamp(56px,14vw,68px);
+  height:clamp(56px,14vw,68px);
+  border-radius:50%;
+  text-align:center;
+  background:rgba(255,255,255,0.03);
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 22px rgba(0,0,0,0.45);
+  border:1px solid rgba(255,255,255,0.03);
+}
+.cell .num{
+  font-size:clamp(14px,4vw,17px);
+  font-weight:800;
+  color:#fff;
+}
+.cell .lbl{
+  font-size:clamp(10px,3vw,11px);
+  color:var(--muted);
+  margin-top:6px;
+}
+.controls{
+  display:flex;
+  gap:12px;
+  margin-top:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.btn{
+  padding:10px 14px;
+  border:none;
+  border-radius:10px;
+  font-weight:800;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--accent-start),var(--accent-end));
+  color:#08131f;
+}
+.btn.ghost{
+  background:transparent;
+  color:#c4d0df;
+  border:1px solid rgba(255,255,255,0.06);
+}
+.message-box{
+  background:rgba(255,255,255,0.025);
+  padding:clamp(16px,3vw,24px);
+
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.06);
+
+  box-shadow:0 10px 24px rgba(0,0,0,0.35);
+
+  max-width:clamp(260px,90vw,760px);
+  width:100%;
+
+  text-align:center;
+}
+
+.lineMsg{
+  opacity:1;
+  font-size:17px;
+  margin:8px 0;
+  color:#fff;
+  min-height:1.4em;
+  white-space: pre-wrap;
+}
+.lineMsg.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.signature{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+  text-align:center;
+  width:100%;
+}
+@media(max-width:420px){
+  .balloons{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .balloon{animation:none}
+}
+.hearts-layer{
+  position:absolute;
+  inset:-20px;
+  pointer-events:none;
+  z-index:240;
+  overflow:visible;
+}
+.heart{
+  position:absolute;
+  font-size:20px;
+  color:#e01b1b;
+  opacity:0;
+  animation:heartJump 3.5s ease-out forwards;
+  will-change: transform, opacity;
+}
+@keyframes heartJump{
+  0%{
+    transform:translateY(0) scale(.8);
+    opacity:0;
+  }
+  15%{opacity:1}
+  100%{
+    transform:translateY(-500px) scale(1.3);
+    opacity:0;
+  }
+}
+
+@media (max-width: 600px){
+  .title{
+    font-size: 20px;
+    line-height: 1.4;
+  }
+}
+.party-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:5;
+  display: none;
+}
+.popper{
+  position:absolute;
+  width: clamp(90px, 14vw, 140px);
+  height: clamp(90px, 14vw, 140px);
+  transform-origin: center center;
+}
+.popper.tl{
+  top: -10px;
+  left: -10px;
+  transform: scaleX(-1) rotate(-90deg);
+}
+.popper.tr{
+  top: -10px;
+  right: -10px;
+  transform: scaleX(-1) rotate(180deg);
+}
+.popper.br{
+  bottom: -10px;
+  right: -10px;
+  transform: scaleX(-1) rotate(90deg);
+}
+.popper.bl{
+  bottom: -10px;
+  left: -10px;
+  transform: scaleX(-1) rotate(-360deg);
+}
+.popper svg{
+  width:100%;
+  height:100%;
+  display: block;
+}
+.card{
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 0 60px rgba(120,190,255,0.15);
+}
+.banner{
+  box-shadow:
+    0 10px 26px rgba(0,0,0,0.35),
+    0 0 22px rgba(180,220,255,0.3);
+}
+@keyframes moonPulse{
+  0%,100%{
+    box-shadow:
+      0 10px 26px rgba(0,0,0,0.35),
+      0 0 18px rgba(180,220,255,0.25);
+  }
+  50%{
+    box-shadow:
+      0 10px 26px rgba(0,0,0,0.35),
+      0 0 28px rgba(180,220,255,0.45);
+  }
+}
+.banner{
+  animation: moonPulse 6s ease-in-out infinite;
+}
+.stars{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.star{
+  position: absolute;            /* مهم جدًا */
+  background: white;             /* تأكيد اللون */
+  border-radius: 50%;
+  opacity: 0.8;
+  box-shadow: 0 0 6px rgba(255,255,255,.9);
+  animation: twinkle 3s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+
+
+@keyframes twinkle{
+  0%   { opacity: .4; transform: scale(.8); }
+  50%  { opacity: 1;  transform: scale(1.2); }
+  100% { opacity: .4; transform: scale(.8); }
+}
+
+/* ===== Continuous Hearts Behind Countdown Cells ===== */
+
+.cell{
+  position: relative; /* مهم علشان القلوب تطلع من الدايرة */
+  overflow: visible;
+}
+
+.cell .cell-hearts{
+  position: absolute;
+  inset: -10px;
+  pointer-events: none;
+  z-index: 1; /* ورا الرقم */
+}
+
+.cell .cell-hearts .mini-heart{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 12px;
+  color: #ff5a7a;
+  opacity: 0;
+  animation: heartBurst 2.4s ease-out forwards;
+}
+
+@keyframes heartBurst{
+  0%{
+    transform: translate(var(--sx), var(--sy)) scale(0.4);
+    opacity: 0;
+  }
+  15%{
+    opacity: 1;
+  }
+  100%{
+    transform:
+      translate(
+        calc(var(--sx) + var(--x)),
+        calc(var(--sy) + var(--y))
+      )
+      scale(0.8);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+@media (max-width:480px){
+  .heart{
+    animation-duration: 4.5s;
+  }
+}
+
+
+
+</style>
+</head>
+<body>
+  <script>
+if(localStorage.getItem("birthdayUnlock") !== "yes"){
+  window.location.href = "index.html";
+}
+</script>
+
+<div class="stars"></div>
+<div class="balloons" id="balloonsRow" aria-hidden="true"></div>
+<div class="banner">❤️ HAPPY BIRTHDAY Beba ❤️</div>
+<div class="card">
+  <div class="hearts-layer"></div>
+  <div class="party-layer">
+  <div class="popper tl"></div>
+  <div class="popper tr"></div>
+  <div class="popper bl"></div>
+  <div class="popper br"></div>
+</div>
+  <h1 class="title">اللي خطفت قلبي كبرت سنة 🫵<span id="name"></span></h1>
+  <div class="countdown">
+    <div class="cell"><div class="num" id="days">--</div><div class="lbl">D</div></div>
+    <div class="cell"><div class="num" id="hours">--</div><div class="lbl">H</div></div>
+    <div class="cell"><div class="num" id="minutes">--</div><div class="lbl">M</div></div>
+    <div class="cell"><div class="num" id="seconds">--</div><div class="lbl">S</div></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="startBtn">دوس ع قلبي يعم😅</button>
+    <button class="btn ghost" id="resetBtn">لو هتشغلي من الاول😁</button>
+  </div>
+
+  <div class="message-box">
+    <p class="lineMsg">كل سنة وانتي طيبة ي ام لين وسنة حلوة وجميلة ع قلبك وعقبال مليون سنة يارب وان شاء الله تكون سنة سعيدة من غير احزان ولا اكتئاب 😂 وتكون سنة خير عليكي وتحققي كل اللي بتتمناه❤️</p>
+    <p class="lineMsg">مش بعرف اتكلم او اعبر ف الاوقات اللي زي كدا 😂</p>
+    <p class="lineMsg">بس ربنا يعلم بحبك قد ايه وبتمنالك تكوني مبسوطة دايما وف احسن حال وان شاء الله ربنا يجمعنا ع خير يارب اجمع بينا علشان تعبت والله ❤️😂</p>
+    <p class="lineMsg">ودي نمشيها هدية لحد م ربنا يريد😅 والاغنية ليكي ❤️</p>
+
+  </div>
+
+  <div class="signature">💕 CREATED BY MIDO 💕</div>
+</div>
+<audio id="bgAudio" src="birthday.mp3" preload="auto"></audio>
+<script>
+let effectsStarted = false;
+let confettiStarted = false;
+let partyShown = false;
+let messageTimers = [];
+let typingInterval = null;
+let typingStopped = false;
+
+(function(){
+  const row = document.getElementById("balloonsRow");
+  const colors = ["b1","b2","b3","b4","b5","b6"];
+  function render(){
+    row.innerHTML="";
+    const count = Math.max(10, Math.floor(window.innerWidth/48));
+    for(let i=0;i<count;i++){
+      const b=document.createElement("div");
+      b.className="balloon "+colors[i%colors.length];
+      b.style.setProperty("--t",(3.8+Math.random()).toFixed(2)+"s");
+      row.appendChild(b);
+    }
+  }
+  render();
+  window.addEventListener("resize",()=>setTimeout(render,120));
+})();
+
+document.addEventListener("DOMContentLoaded", function(){
+  const target = new Date(2026, 1, 23, 0, 0, 0);
+  const d = document.getElementById("days");
+  const h = document.getElementById("hours");
+  const m = document.getElementById("minutes");
+  const s = document.getElementById("seconds");
+  if(!d || !h || !m || !s){
+    console.error("Countdown elements not found");
+    return;
+  }
+  const timer = setInterval(tick, 1000);
+  tick();
+
+  function tick(){
+    const now = new Date();
+    let diff = target.getTime() - now.getTime();
+
+    if(diff > 0){
+      d.textContent = String(Math.floor(diff / 86400000)).padStart(2,"0");
+      h.textContent = String(Math.floor(diff / 3600000) % 24).padStart(2,"0");
+      m.textContent = String(Math.floor(diff / 60000) % 60).padStart(2,"0");
+      s.textContent = String(Math.floor(diff / 1000) % 60).padStart(2,"0");
+    } else {
+  if (partyShown) return;
+  partyShown = true;
+  clearInterval(timer);
+  d.textContent = "00";
+  h.textContent = "00";
+  m.textContent = "00";
+  s.textContent = "00";
+  document.querySelector(".party-layer").style.display = "block";
+}
+  }
+});
+
+const lines=[...document.querySelectorAll(".lineMsg")];
+const startBtn = document.getElementById("startBtn");
+const resetBtn = document.getElementById("resetBtn");
+const bgAudio  = document.getElementById("bgAudio");
+
+lines.forEach(line => {
+  line.dataset.text = line.textContent;
+  line.textContent = "";
+});
+
+startBtn.onclick = () => {
+  bgAudio.play().catch(()=>{});
+  typingStopped = false;
+  messageTimers.forEach(t => clearTimeout(t));
+  messageTimers = [];
+  if (typingInterval) clearInterval(typingInterval);
+
+  lines.forEach(line => {
+    line.textContent = "";
+    line.classList.remove("visible");
+  });
+
+  let lineIndex = 0;
+  function typeLine() {
+    if (lineIndex >= lines.length || typingStopped) return;
+    const line = lines[lineIndex];
+    const text = line.dataset.text;
+    let charIndex = 0;
+    line.classList.add("visible");
+    line.textContent = "";
+
+    typingInterval = setInterval(() => {
+      if (typingStopped) {
+        clearInterval(typingInterval);
+        return;
+      }
+      line.textContent += text[charIndex];
+      charIndex++;
+      if (charIndex >= text.length) {
+        clearInterval(typingInterval);
+        lineIndex++;
+        const t = setTimeout(typeLine, 600);
+        messageTimers.push(t);
+      }
+    }, 55);
+  }
+
+  typeLine();
+  effectsStarted = true;
+  const layer = document.querySelector(".confetti-layer");
+layer.style.display = "block";
+if(!confettiStarted){
+  confettiStarted = true;
+}
+
+};
+
+resetBtn.onclick = () => {
+  bgAudio.pause();
+  bgAudio.currentTime = 0;
+  typingStopped = true;
+  if (typingInterval) clearInterval(typingInterval);
+  messageTimers.forEach(t => clearTimeout(t));
+  messageTimers = [];
+  lines.forEach(line => {
+    line.textContent = "";
+    line.classList.remove("visible");
+  });
+  effectsStarted = false;
+  confettiStarted = false;
+  document.querySelector(".confetti-layer").style.display = "none";
+  clearEffects();
+};
+
+(function(){
+  const layer = document.querySelector(".hearts-layer");
+  if(!layer) return;
+  setInterval(() => {
+    if(!effectsStarted) return;
+    for(let i = 0; i < 3; i++){
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.textContent = "❤";
+
+      h.style.left = Math.random() * 110 - 5 + "%";
+      h.style.bottom = "0";
+      layer.appendChild(h);
+      setTimeout(() => h.remove(), 3500);
+    }
+  }, 900);
+})();
+
+
+
+function clearEffects(){
+  document.querySelectorAll(".heart").forEach(h => h.remove());
+
+  document.querySelectorAll(".confetti-piece").forEach(c => c.remove());
+}
+</script>
+   <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".popper").forEach(el => {
+    lottie.loadAnimation({
+      container: el,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: "Party Popper.json"
+    });
+  });
+});
+
+const STAR_COUNT = 200;
+const starsBox = document.querySelector(".stars");
+for(let i = 0; i < STAR_COUNT; i++){
+  const star = document.createElement("div");
+  star.className = "star";
+  const size = Math.random() * 2 + 1;
+  star.style.width  = size + "px";
+  star.style.height = size + "px";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top  = Math.random() * 100 + "%";
+  star.style.animationDuration = (2 + Math.random() * 3) + "s";
+  starsBox.appendChild(star);
+}
+
+/* ===== Hearts From Cell Edge Outward (REAL FIX) ===== */
+
+document.querySelectorAll(".cell").forEach(cell => {
+  const layer = document.createElement("div");
+  layer.className = "cell-hearts";
+  cell.prepend(layer);
+
+  setInterval(() => {
+    for(let i = 0; i < 3; i++){
+      const heart = document.createElement("span");
+      heart.className = "mini-heart";
+      heart.textContent = "❤";
+
+      const angle = Math.random() * Math.PI * 2;
+      const radius = cell.offsetWidth / 2;
+      const distance = 18 + Math.random() * 25;
+
+      // بداية من حافة الدايرة
+      const startX = Math.cos(angle) * radius;
+      const startY = Math.sin(angle) * radius;
+
+      // الحركة لبرا
+      const moveX = Math.cos(angle) * distance;
+      const moveY = Math.sin(angle) * distance;
+
+      heart.style.setProperty("--sx", startX + "px");
+      heart.style.setProperty("--sy", startY + "px");
+      heart.style.setProperty("--x", moveX + "px");
+      heart.style.setProperty("--y", moveY + "px");
+
+      layer.appendChild(heart);
+      setTimeout(() => heart.remove(), 2400);
+    }
+  }, 220);
+});
+
+</script>
+<script>
+window.addEventListener("beforeunload",()=>{
+  localStorage.removeItem("birthdayUnlock");
+});
+</script>
+</body>
+</html>

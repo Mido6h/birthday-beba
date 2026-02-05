@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beba❤️❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#02101b;
+  --bg2:#0a6fa1;
+  --accent1:#217cc3;
+  --accent2:#198bb5;
+  --soft:#eef6ff;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Cairo',sans-serif;
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:var(--soft);
+  overflow:hidden;
+}
+
+/* stars */
+.stars{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+}
+.star{
+  position:absolute;
+  background:white;
+  border-radius:50%;
+  opacity:.7;
+  animation:twinkle 3s infinite;
+}
+@keyframes twinkle{
+  0%,100%{opacity:.3}
+  50%{opacity:1}
+}
+
+.card{
+  width:90%;
+  max-width:420px;
+  padding:30px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.04);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+  text-align:center;
+}
+
+.title{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+
+/* input نفس اللي ظبطناه قبل */
+input{
+  width:85%;
+  max-width:320px;
+  display:block;
+  margin:18px auto;
+  padding:16px 22px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.15);
+  outline:none;
+  font-family:'Cairo';
+  font-size:16px;
+  background:rgba(0,0,0,0.35);
+  color:#fff;
+  text-align:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.4);
+  transition:.25s;
+}
+
+input:focus{
+  border-color:#2a9d8f;
+  box-shadow:0 0 16px rgba(42,157,143,.7);
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:999px;
+  font-family:'Cairo';
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  color:#08131f;
+}
+
+.error{
+  margin-top:10px;
+  color:#ffffff;
+  opacity:0;
+  transition:.3s;
+}
+.error.show{opacity:1}
+
+.creator{
+  margin-top:14px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1px;
+  color:rgb(255, 255, 255);
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="card">
+  <div class="title">الباسوورد ي روحي 😁😘</div>
+  <input type="text" id="pass" placeholder="Enter Password">
+  <button onclick="check()">🎉 افتح ي سمسم 🎉</button>
+  <div id="err" class="error">معندكيش صبر قولتلك هديكي الباسوورد وه 🤣🤣💕</div>
+  <div class="creator">💕 CREATED BY MIDO 💕</div>
+</div>
+
+<script>
+/* stars */
+const starsBox=document.querySelector(".stars");
+for(let i=0;i<140;i++){
+  const s=document.createElement("div");
+  s.className="star";
+  const size=Math.random()*2+1;
+  s.style.width=size+"px";
+  s.style.height=size+"px";
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+  starsBox.appendChild(s);
+}
+
+/* password */
+const PASSWORD="BebaLoveMidoSooMuch";   // غيرها
+
+function check(){
+  const v=document.getElementById("pass").value.trim();
+  if(v===PASSWORD){
+    localStorage.setItem("birthdayUnlock","yes");
+    window.location.href="birthday.html";
+  }else{
+    document.getElementById("err").classList.add("show");
+  }
+}
+</script>
+
+</body>
+</html>
