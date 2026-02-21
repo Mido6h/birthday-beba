@@ -458,7 +458,7 @@ if(localStorage.getItem("birthdayUnlock") !== "yes"){
 
   <div class="controls">
     <button class="btn" id="startBtn">دوس ع قلبي يعم😅</button>
-    <button class="btn ghost" id="resetBtn">لو هتشغلي من الاول😁</button>
+
   </div>
 
   <div class="message-box">
@@ -534,7 +534,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 const lines=[...document.querySelectorAll(".lineMsg")];
 const startBtn = document.getElementById("startBtn");
-const resetBtn = document.getElementById("resetBtn");
+
 const bgAudio  = document.getElementById("bgAudio");
 
 lines.forEach(line => {
@@ -543,23 +543,45 @@ lines.forEach(line => {
 });
 
 startBtn.onclick = () => {
+
+  // لو شغالة بالفعل → نعمل إعادة تشغيل
+  if(effectsStarted){
+    bgAudio.pause();
+    bgAudio.currentTime = 0;
+    typingStopped = true;
+
+    if (typingInterval) clearInterval(typingInterval);
+    messageTimers.forEach(t => clearTimeout(t));
+    messageTimers = [];
+
+    lines.forEach(line => {
+      line.textContent = "";
+      line.classList.remove("visible");
+    });
+
+    effectsStarted = false;
+    clearEffects();
+
+    startBtn.textContent = "دوسي هنا ي قلبي😅";
+    return;
+  }
+
+  // تشغيل طبيعي
   bgAudio.play().catch(()=>{});
   typingStopped = false;
-  messageTimers.forEach(t => clearTimeout(t));
-  messageTimers = [];
-  if (typingInterval) clearInterval(typingInterval);
-
-  lines.forEach(line => {
-    line.textContent = "";
-    line.classList.remove("visible");
-  });
 
   let lineIndex = 0;
+
   function typeLine() {
-    if (lineIndex >= lines.length || typingStopped) return;
+    if (lineIndex >= lines.length || typingStopped){
+      startBtn.textContent = "🔄";
+      return;
+    }
+
     const line = lines[lineIndex];
     const text = line.dataset.text;
     let charIndex = 0;
+
     line.classList.add("visible");
     line.textContent = "";
 
@@ -568,43 +590,26 @@ startBtn.onclick = () => {
         clearInterval(typingInterval);
         return;
       }
+
       line.textContent += text[charIndex];
       charIndex++;
+
       if (charIndex >= text.length) {
         clearInterval(typingInterval);
         lineIndex++;
-        const t = setTimeout(typeLine, 600);
-        messageTimers.push(t);
+        setTimeout(typeLine, 400);
       }
-    }, 30);
+
+    }, 40);
   }
 
   typeLine();
   effectsStarted = true;
-  const layer = document.querySelector(".confetti-layer");
-layer.style.display = "block";
-if(!confettiStarted){
-  confettiStarted = true;
-}
-
 };
 
-resetBtn.onclick = () => {
-  bgAudio.pause();
-  bgAudio.currentTime = 0;
-  typingStopped = true;
-  if (typingInterval) clearInterval(typingInterval);
-  messageTimers.forEach(t => clearTimeout(t));
-  messageTimers = [];
-  lines.forEach(line => {
-    line.textContent = "";
-    line.classList.remove("visible");
-  });
-  effectsStarted = false;
-  confettiStarted = false;
-  document.querySelector(".confetti-layer").style.display = "none";
-  clearEffects();
-};
+  
+
+
 
 (function(){
   const layer = document.querySelector(".hearts-layer");
