@@ -126,7 +126,7 @@ button{
 
 <div class="card">
   <div class="title">الباسوورد ي روحي 😁😘</div>
-  <input type="text" id="pass" placeholder="Enter Password">
+  <input type="password" id="pass" placeholder="Enter Password">
   <button onclick="check()">🎉 افتح ي سمسم 🎉</button>
   <div id="err" class="error">معندكيش صبر قولتلك هديكي الباسوورد وه 🤣🤣💕</div>
   <div class="creator">💕 CREATED BY MIDO 💕</div>
@@ -158,6 +158,17 @@ function check(){
     document.getElementById("err").classList.add("show");
   }
 }
+document.getElementById("pass").addEventListener("keydown", function(e){
+  if(e.key === "Enter"){
+    check();
+  }
+});
+
+
+document.addEventListener("visibilitychange",()=>{
+  document.querySelector(".stars").style.display =
+    document.hidden ? "none" : "block";
+});
 </script>
 
 </body>
