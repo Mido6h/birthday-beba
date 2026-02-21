@@ -576,7 +576,7 @@ startBtn.onclick = () => {
         const t = setTimeout(typeLine, 600);
         messageTimers.push(t);
       }
-    }, 45);
+    }, 30);
   }
 
   typeLine();
@@ -647,7 +647,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const STAR_COUNT = 80;
+const STAR_COUNT = 40;
 const starsBox = document.querySelector(".stars");
 for(let i = 0; i < STAR_COUNT; i++){
   const star = document.createElement("div");
@@ -701,7 +701,7 @@ setInterval(()=>{
     }
   });
 
-}, 350);
+}, 700);
 
 </script>
 <script>
@@ -711,6 +711,10 @@ window.addEventListener("beforeunload",()=>{
 
 document.addEventListener("visibilitychange",()=>{
   effectsStarted = !document.hidden;
+
+  if(document.hidden){
+    bgAudio.pause();
+  }
 });
 
 
